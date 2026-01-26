@@ -1,15 +1,18 @@
 @startuml
 
 entity merchant {
-
+    * id INT
+    --
 }
 
 entity goods {
-
+    * id INT
+    --
 }
 
 entity supplier {
-    
+    * id INT
+    --
 }
 
 @enduml
