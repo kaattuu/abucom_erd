@@ -1,5 +1,15 @@
 @startuml
 
+entity merchant {
 
+}
+
+entity goods {
+
+}
+
+entity supplier {
+    
+}
 
 @enduml
