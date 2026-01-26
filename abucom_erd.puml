@@ -3,16 +3,26 @@
 entity merchant {
     * id INT
     --
-}
-
-entity goods {
-    * id INT
-    --
+    * nama VARCHAR
+    alamat VARCHAR
+    contact VARCHAR
+    deskripsi TEXT
 }
 
 entity supplier {
     * id INT
     --
+    * nama VARCHAR
+    alamat VARCHAR
+    contact VARCHAR
+    deskripsi TEXT
+}
+
+entity goods {
+    * id INT
+    --
+    * sku VARCHAR
+    * nama VARCHAR
 }
 
 @enduml
