@@ -52,4 +52,17 @@ goods ||--|{ merchant_stock
 supplier ||--|{ supply
 goods ||--|{ supply
 
+entity order {
+    * id INT
+    --
+    merchant_id INT <<FK>>
+    supply_id INT <<FK>>
+    --
+    quantity INT
+    status VARCHAR
+}
+
+merchant ||--|{ order
+supply ||--|{ order
+
 @enduml
