@@ -20,49 +20,41 @@ entity supplier {
 
 entity goods {
     * id INT
+    merchant_id INT <<FK>>
     --
     * sku VARCHAR
     --
     * nama VARCHAR
-}
-
-entity merchant_stock {
-    * id INT
-    --
-    merchant_id INT <<FK>>
-    goods_id INT <<FK>>
-    --
+    * price DECIMAL
     stock INT
-    price DECIMAL
 }
 
-entity supply {
-    * id INT
-    --
-    supplier_id INT <<FK>>
-    goods_id INT <<FK>>
-    --
-    stock INT
-    price DECIMAL
-}
-
-merchant ||--|{ merchant_stock
-goods ||--|{ merchant_stock
-
-supplier ||--|{ supply
-goods ||--|{ supply
+merchant ||--|{ goods
 
 entity order {
     * id INT
     --
     merchant_id INT <<FK>>
-    supply_id INT <<FK>>
+    supplier_id INT <<FK>>
     --
-    quantity INT
     status VARCHAR
+    tanggal DATE
 }
 
 merchant ||--|{ order
-supply ||--|{ order
+supplier ||--|{ order
+
+entity order_detail {
+    * id INT
+    --
+    order_id INT <<FK>>
+    goods_id INT <<FK>>
+    --
+    quantity INT
+    price DECIMAL
+}
+
+order ||--|| order_detail
+goods ||--|{ order_detail
 
 @enduml
