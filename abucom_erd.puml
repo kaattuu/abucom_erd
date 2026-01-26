@@ -22,7 +22,34 @@ entity goods {
     * id INT
     --
     * sku VARCHAR
+    --
     * nama VARCHAR
 }
+
+entity merchant_stock {
+    * id INT
+    --
+    merchant_id INT <<FK>>
+    goods_id INT <<FK>>
+    --
+    stock INT
+    price DECIMAL
+}
+
+entity supply {
+    * id INT
+    --
+    supplier_id INT <<FK>>
+    goods_id INT <<FK>>
+    --
+    stock INT
+    price DECIMAL
+}
+
+merchant ||--|{ merchant_stock
+goods ||--|{ merchant_stock
+
+supplier ||--|{ supply
+goods ||--|{ supply
 
 @enduml
