@@ -1,5 +1,28 @@
 @startuml
 
+entity supplier {
+    * id INT
+    --
+    ...
+}
+
+entity merchant {
+    * id INT
+    --
+    ...
+}
+
+entity customer {
+    * id INT
+    --
+    ...
+}
+
+entity goods {
+    * id INT
+    --
+    ...
+}
 
 
 @enduml
