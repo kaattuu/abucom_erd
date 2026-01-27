@@ -2,8 +2,86 @@
 !theme crt-green
 ' !theme crt-amber
 
+entity user {
 
+}
 
+entity merchant {
+    
+}
+
+entity inventory {
+    
+}
+
+entity customer {
+    
+}
+
+entity order {
+    
+}
+
+entity order_detail {
+    
+}
+
+entity goods {
+    
+}
+
+entity purchase_detail {
+    
+}
+
+entity purchase {
+    
+}
+
+entity category {
+    
+}
+
+entity spesifikasi {
+    
+}
+
+entity satuan {
+    
+}
+
+entity tinta {
+    
+}
+
+entity kertas {
+    
+}
+
+user |o--o{ merchant
+user |o--o{ customer
+
+inventory }o--left--o|  merchant
+inventory }o--right--o| customer
+
+inventory }o--o| goods
+merchant  |o--o{ order
+customer  |o--o{ purchase
+inventory }o--o| order
+inventory }o--o| purchase
+
+order    |o-right-o| order_detail
+purchase |o-left-o|  purchase_detail
+
+goods |o-left-o{ order_detail
+goods |o-right-o{ purchase_detail
+
+goods }o--o| category
+goods }o--o| spesifikasi
+goods }o--o| satuan
+
+spesifikasi |o--o{ tinta
+spesifikasi |o--o{ kertas
 
 
 @enduml
