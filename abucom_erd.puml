@@ -8,12 +8,15 @@ merchant  |o--o{ order
 merchant  |o--o{ inventory
 order     |o--o{ order_detail
 order     |o--o{ inventory
+order_detail ||--|| inventory
 goods     |o--o{ order_detail
 customer  |o--o{ purchase
 customer  |o--o{ inventory
 purchase  |o--o{ purchase_detail
 purchase  |o--o{ inventory
+purchase_detail ||--|| inventory
 goods     |o--o{ purchase_detail
 inventory }o--o| goods
+
 
 @enduml
