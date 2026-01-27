@@ -2,21 +2,152 @@
 !theme crt-green
 ' !theme crt-amber
 
-user      |o--o| merchant
-user      |o--o| customer
-merchant  |o--o{ order
-merchant  |o--o{ inventory
-order     |o--o{ order_detail
-order     |o--o{ inventory
-order_detail ||--|| inventory
-goods     |o--o{ order_detail
-customer  |o--o{ purchase
-customer  |o--o{ inventory
-purchase  |o--o{ purchase_detail
-purchase  |o--o{ inventory
-purchase_detail ||--|| inventory
-goods     |o--o{ purchase_detail
-inventory }o--o| goods
+
+entity user {
+    id INT
+    --
+    nama VARCHAR
+    contact VARCHAR
+    alamat VARCHAR
+    role ENUM
+}
+
+entity merchant {
+    id INT
+    --
+    user_id INT
+}
+
+entity customer {
+    id INT
+    --
+    user_id INT
+}
+
+entity order {
+    id INT
+    --
+    merchant_id INT
+    merchant_id INT
+    tanggal DATE
+    status ENUM
+    deskripsi VARCHAR
+}
+
+entity order_detail {
+    id INT
+    --
+    order_id INT
+    goods_id INT
+    quantity INT
+    price DECIMAL
+}
+
+entity purchase {
+    id INT
+    --
+    merchant_id INT
+    tanggal DATE
+    status ENUM
+    deskripsi VARCHAR
+}
+
+entity purchase_detail {
+    id INT
+    --
+    purchase_id INT
+    goods_id INT
+    quantity INT
+    price DECIMAL
+}
+
+entity inventroy {
+    id INT
+    --
+    merchant_id INT
+    customer_id INT
+    order_id INT
+    purchase_id INT
+
+}
+
+entity goods {
+    id INT
+    --
+    sku VARCHAR
+    nama VARCHAR
+    stok INT
+    price DECIMAL
+    --
+    category_id INT
+    satuan_id INT
+    spesifikasi_id INT
+}
+
+entity category {
+    id INT
+    --
+    nama VARCHAR
+    deskripsi VARCHAR
+}
+
+entity spesifikasi {
+    id INT
+    --
+    warna VARCHAR
+    deskripsi VARCHAR
+}
+
+entity tinta {
+    spesifikasi_id INT
+    --
+    jenis VARCHAR
+    netto VARCHAR
+}
+
+entity kertas {
+    spesifikasi_id INT
+    --
+    ukuran VARCHAR
+    tekstur VARCHAR
+    dimensi VARCHAR
+    gramasi VARCHAR
+}
+
+entity satuan {
+    id INT
+    --
+    nama VARCHAR
+    deskripsi VARCHAR
+}
+
+
+user         ||--|| merchant
+merchant     ||--|| order
+order        ||--|| order_detail
+order_detail |o-o|  goods
+
+
+merchant     ||--|| inventroy
+order        ||-||  inventroy
+inventroy    ||--|| goods
+inventroy    ||-||  purchase
+customer     ||--|| inventroy
+
+
+
+user         ||--|| customer
+customer     ||--|| purchase
+purchase     ||--|| purchase_detail
+goods        |o-o|  purchase_detail
+
+
+goods        }o--o| category
+goods        }o--o| spesifikasi
+spesifikasi  |o--o{ tinta
+spesifikasi  |o--o{ kertas
+goods        }o--o| satuan
+
 
 
 @enduml
