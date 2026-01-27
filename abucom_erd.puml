@@ -1,28 +1,18 @@
 @startuml
+!theme crt-green
+' !theme crt-amber
 
-entity supplier {
-    * id INT
-    --
-    ...
-}
+user |o--o| merchant
+user |o--o| customer
 
-entity merchant {
-    * id INT
-    --
-    ...
-}
+merchant }o--o{ goods
+note on link
+    sale
+end note
 
-entity customer {
-    * id INT
-    --
-    ...
-}
-
-entity goods {
-    * id INT
-    --
-    ...
-}
-
+customer }o--o{ goods
+note on link
+    purchase
+end note
 
 @enduml
