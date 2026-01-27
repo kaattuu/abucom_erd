@@ -37,7 +37,7 @@ entity order {
     merchant_id INT <<FK>>
     supplier_id INT <<FK>>
     --
-    status VARCHAR
+    status ENUM
     tanggal DATE
 }
 
@@ -56,5 +56,39 @@ entity order_detail {
 
 order ||--|| order_detail
 goods ||--|{ order_detail
+
+entity customer {
+    * id INT
+    --
+    nama VARCHAR
+    contact VARCHAR
+    alamat VARCHAR
+    deskripsi TEXT
+}
+
+entity purchase {
+    * id INT
+    ---
+    customer_id VARCHAR <<FK>>
+    merchant_id VARCHAR <<FK>>
+    --
+    status ENUM
+    tanggal DATE
+}
+
+entity purchase_detail {
+    * id INT
+    ---
+    sale_id INT <<FK>>
+    goods_id INT <<FK>>
+    --
+    quantity INT
+    price DECIMAL
+}
+
+customer ||--|{ purchase
+purchase }|--|| merchant
+purchase ||--|| purchase_detail
+purchase_detail }|-|| goods
 
 @enduml
