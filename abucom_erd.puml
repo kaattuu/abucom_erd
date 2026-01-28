@@ -49,7 +49,7 @@ entity order_detail {
     id_order_detail INT
     --
     order_id INT
-    goods_id INT
+    inventory_id INT
     quantity INT
     price DECIMAL
 }
@@ -79,9 +79,10 @@ order |o--o| order_detail
 
 
 inventory }o--o| goods
+inventory }o--o| order_detail
 
 
-goods |o-o{ order_detail
+' goods |o-o{ order_detail
 
 
 
