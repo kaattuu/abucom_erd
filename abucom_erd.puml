@@ -82,7 +82,16 @@ entity goods {
     nama VARCHAR
 }
 
-
+entity inventory_log {
+    id_log INT
+    --
+    inventory_id INT
+    type ENUM
+    quantity INT
+    reference_id INT
+    reference_type ENUM
+    created_at TIMESTAMP
+}
 
 
 user |o--o| merchant
@@ -101,6 +110,7 @@ purchase |o--o| purchase_detail
 
 inventory |o--o{ purchase_detail
 inventory |o--o{ order_detail
+inventory |o--o{ inventory_log
 inventory }o--o| goods
 
 order |o--o| order_detail
