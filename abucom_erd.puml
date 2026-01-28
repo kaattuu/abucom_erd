@@ -39,8 +39,7 @@ entity inventory {
 entity order {
     id_order INT
     --
-    customer_id INT
-    merchant_id INT
+    order_detail_id INT
     tanggal DATE
     status ENUM
 }
@@ -48,7 +47,7 @@ entity order {
 entity order_detail {
     id_order_detail INT
     --
-    order_id INT
+    customer_id INT
     inventory_id INT
     quantity INT
     price DECIMAL
@@ -70,19 +69,13 @@ user |o--o| employee
 
 
 merchant |o--o{ inventory
-merchant |o--o{ order
-customer |o--o{ order
+customer |o--o{ order_detail
 employee |o--o| memantau
 
-
-order |o--o| order_detail
-
-
+inventory |o-o{ order_detail
 inventory }o--o| goods
-inventory }o--o| order_detail
 
-
-' goods |o-o{ order_detail
+order_detail ||--|| order
 
 
 
