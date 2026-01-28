@@ -2,6 +2,86 @@
 !theme crt-green
 ' !theme crt-amber
 
+entity user {
+    id_user INT
+    --
+    name VARCHAR
+}
+
+entity merchant {
+    id_merchant INT
+    --
+    user_id INT
+    nama_toko VARCHAR
+}
+
+entity customer {
+    id_customer INT
+    --
+    user_id INT
+}
+
+entity employee {
+    id_employee INT
+    --
+    user_id INT
+}
+
+entity inventory {
+    id_inventory INT
+    --
+    merchant_id INT
+    goods_id INT
+    price DECIMAL
+    stock INT
+}
+
+entity order {
+    id_order INT
+    --
+    customer_id INT
+    merchant_id INT
+    tanggal DATE
+    status ENUM
+}
+
+entity order_detail {
+    id_order_detail INT
+    --
+    order_id INT
+    goods_id INT
+    quantity INT
+    price DECIMAL
+}
+
+entity goods {
+    id_goods INT
+    --
+    sku VARCHAR
+    nama VARCHAR
+}
+
+
+
+
+user |o--o| merchant
+user |o--o| customer
+user |o--o| employee
+
+
+merchant |o--o{ inventory
+merchant |o--o{ order
+customer |o--o{ order
+employee |o--o| memantau
+
+
+order |o--o| order_detail
+
+
+inventory }o--o| goods
+
+
+goods |o-o{ order_detail
 
 
 
