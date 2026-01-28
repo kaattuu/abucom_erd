@@ -48,6 +48,7 @@ entity order {
 entity order_detail {
     id_order_detail INT
     --
+    order_id INT
     inventory_id INT
     quantity INT
     price DECIMAL
