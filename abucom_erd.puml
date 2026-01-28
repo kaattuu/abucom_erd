@@ -76,11 +76,10 @@ customer |o--o{ order
 
 employee |o--o| memantau
 
-order |o--o| order_detail
-
 inventory |o--o{ order_detail
 inventory }o--o| goods
 
+order |o--o| order_detail
 
 
 
