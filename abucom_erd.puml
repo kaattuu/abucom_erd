@@ -40,6 +40,7 @@ entity order {
     id_order INT
     --
     customer_id INT
+    merchant_id INT
     tanggal DATE
     status ENUM
 }
@@ -68,6 +69,7 @@ user |o--o| employee
 
 
 merchant |o--o{ inventory
+merchant |o--o{ order
 customer |o--o{ order
 employee |o--o| memantau
 
