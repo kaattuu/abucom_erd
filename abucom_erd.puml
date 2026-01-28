@@ -3,72 +3,146 @@
 ' !theme crt-amber
 
 entity user {
-
+    id INT
+    --
+    user_name VARCHAR
+    password VARCHAR
+    email VARCHAR
+    role VARCHAR
 }
 
 entity merchant {
-    
+    id INT
+    --
+    user_id INT
+    nama_toko VARCHAR
+    alamat VARCHAR
 }
 
 entity inventory {
-    
+    id INT
+    --
+    tanggal_transaksi DATE
+    kode_transaksi INT
+    kode_penjual INT
+    kode_pembeli INT
+    peran_penjual ENUM
+    peran_pembeli ENUM
+    kode_barang INT
+    jumlah_barang INT
+    harga_barang DECIMAL
+    stok_penjual INT
+    stok_pembeli INT
 }
 
 entity customer {
-    
+    id INT
+    --
+    user_id INT
+    nama VARCHAR
+    contact VARCHAR
+    alamat VARCHAR
 }
 
 entity order {
-    
+    id INT
+    --
+    merchant_id INT
+    merchant_id INT
+    tanggal DATE
+    status ENUM
 }
 
 entity order_detail {
-    
+    id INT
+    --
+    order_id INT
+    goods_id INT
+    quantity INT
+    price DECIMAL
 }
 
 entity goods {
-    
+    id INT
+    --
+    merchant_id INT
+    sku VARCHAR
+    nama VARCHAR
+    stok INT
+    price DECIMAL
+    category_id INT
+    satuan_id INT
+    spesifikasi_id INT
 }
 
 entity purchase_detail {
-    
+    id INT
+    --
+    purchase_id INT
+    goods_id INT
+    quantity INT
+    price DECIMAL
 }
 
 entity purchase {
-    
+    id INT
+    --
+    customer_id INT
+    merchant_id INT
+    tanggal DATE
+    status ENUM
 }
 
 entity category {
-    
+    id INT
+    --
+    nama VARCHAR
+    deskripsi VARCHAR
 }
 
 entity spesifikasi {
-    
+    id INT
+    --
+    warna VARCHAR
+    deskripsi VARCHAR
 }
 
 entity satuan {
-    
+    id INT
+    --
+    nama VARCHAR
+    deskripsi VARCHAR
 }
 
 entity tinta {
-    
+    id INT
+    --
+    spesifikasi_id INT
+    jenis VARCHAR
+    netto VARCHAR
 }
 
 entity kertas {
-    
+    id INT
+    --
+    ukuran VARCHAR
+    tekstur VARCHAR
+    gramasi VARCHAR
+    dimensi VARCHAR
 }
 
 user |o--o{ merchant
 user |o--o{ customer
 
 inventory }o--left--o|  merchant
-inventory }o--right--o| customer
+' inventory }o--right--o| customer
 
 inventory }o--o| goods
+merchant  |o--o{ goods
 merchant  |o--o{ order
 customer  |o--o{ purchase
-inventory }o--o| order
-inventory }o--o| purchase
+' inventory }o--o| order
+' inventory }o--o| purchase
 
 order    |o-right-o| order_detail
 purchase |o-left-o|  purchase_detail
