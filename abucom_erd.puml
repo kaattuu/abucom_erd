@@ -27,6 +27,25 @@ entity employee {
     user_id INT
 }
 
+entity purchase {
+    id_purchase INT
+    --
+    merchant_id INT
+    supplier_id INT
+    tanggal DATE
+    status ENUM
+}
+
+entity purchase_detail {
+    id_purchase_detail INT
+    --
+    purchase_id INT
+    inventory_id INT
+    quantity INT
+    price DECIMAL
+    total_price DECIMAL
+}
+
 entity inventory {
     id_inventory INT
     --
@@ -34,6 +53,7 @@ entity inventory {
     goods_id INT
     price DECIMAL
     stock INT
+    stock_min INT
 }
 
 entity order {
@@ -52,6 +72,7 @@ entity order_detail {
     inventory_id INT
     quantity INT
     price DECIMAL
+    total_price DECIMAL
 }
 
 entity goods {
@@ -68,7 +89,7 @@ user |o--o| merchant
 user |o--o| customer
 user |o--o| employee
 
-
+merchant |o--o{ purchase
 merchant |o--o{ inventory
 merchant |o--o{ order
 
@@ -76,6 +97,9 @@ customer |o--o{ order
 
 employee |o--o| memantau
 
+purchase |o--o| purchase_detail
+
+inventory |o--o{ purchase_detail
 inventory |o--o{ order_detail
 inventory }o--o| goods
 
